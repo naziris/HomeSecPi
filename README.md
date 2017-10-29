@@ -9,7 +9,7 @@ This source code has been taken out from a completely working environment, so it
 
 The source code is provided as is! No support will be given regarding issues like the code is not working. As I mentioned earlier the source code is published for referencing purposes only. The easiest way to make it work is to produce your own application and use mine to get inspired.
 
-My thesis report it might be usuful for some of you - http://bit.ly/2xxScuS
+My thesis report it might be usuful for some of you - http://bit.ly/2z0sR09
 
 ## Contribution
 
@@ -19,7 +19,7 @@ Also, if you managed to make this project better than what I did (I’m sure you
 
 ## Authors
 
-* **Kyriakos Naziris** - [www.naziris.co.uk](http://bit.ly/2xxScuS)
+* **Kyriakos Naziris** - [www.naziris.co.uk](http://bit.ly/2z0sR09)
 
 ## License
 
