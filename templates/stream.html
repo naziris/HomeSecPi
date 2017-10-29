@@ -1,0 +1,36 @@
+<!-- /*******************************************************
+ * 
+ * Copyright (C) 2015-2016 Kyriakos Naziris <kyriakos@naziris.co.uk>
+ * This is a thesis project of University of Portsmouth.
+ *
+ * This file is part of HomeSecPi.
+ * 
+ * Feel free to use and modify the source code as long as
+ * as you give credits to the original author of the
+ * project (Kyriakos Naziris - kyriakos@naziris.co.uk).
+ *
+ *******************************************************/ -->
+
+{% extends "index.html" %}
+{% block content %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('ul.nav > li').ready(function (e) {
+            e.preventDefault();
+            $('ul.nav > li').removeClass('active');
+            $(this).addClass('active');                
+        });            
+    });
+</script>
+
+<br>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">Live Streaming</h1>
+  </div>
+  <div class="panel-body">
+    <img id="pic" src="{{ url_for('video_feed') }}" alt="live stream link" class="img-responsive img-rounded"></img>
+  </div>
+</div>
+
+{% endblock %}

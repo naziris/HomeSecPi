@@ -1,0 +1,67 @@
+<!-- /*******************************************************
+ * 
+ * Copyright (C) 2015-2016 Kyriakos Naziris <kyriakos@naziris.co.uk>
+ * This is a thesis project of University of Portsmouth.
+ *
+ * This file is part of HomeSecPi.
+ * 
+ * Feel free to use and modify the source code as long as
+ * as you give credits to the original author of the
+ * project (Kyriakos Naziris - kyriakos@naziris.co.uk).
+ *
+ *******************************************************/ -->
+
+{% extends "index.html" %}
+{% block content %}
+{% if 'username' not in session %}
+	<form action="{{url_for('login')}}" class="form-signin" role="form" method="post">
+	    <h2 class="form-signin-heading">Please sign in</h2>
+	    <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+	    <input type="password" name="passwd" class="form-control" placeholder="Password" required>
+	    <div class="checkbox">
+	    </div>
+	    <button class="btn btn-lg btn-primary btn-block" type="submit" value="submit">Sign in</button>
+    </form>
+    <form class="form-signin" role="form">
+        <a href="#" class="btn btn-lg btn-primary btn-block" id="confirmUsernamebtn">Reset Password</a></span>
+	</form>
+{% else %}
+<script>
+    setTimeout(function(){location.href="/"} , 3000);
+</script>
+<p>You're already logged-in, you'll be redirected shortly to the main page. If for some reason the redirection failed, please <a href="/">click here</a>, to be redirected.
+{% endif %} 
+{% with messages = get_flashed_messages() %} {% for message in messages %}
+	<div class="alert alert-info" role="alert">{{message}}</div>
+{% endfor %} {% endwith %}
+
+    <div id="confirmUsername" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirmUsernamelbl" aria-hidden="true">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog modal-sm vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="confirmUsernamelbl">Please confirm your username:</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{url_for('login')}}" role="form" id="confirmUsernameForm" method="post">
+                            <input type="hidden" name="formType" value="confirmUsername">
+                            <div class="form-group">
+                                <label class="col-xs- control-label">Username</label>
+                                <div class="col-xs-">
+                                    <input type="text" class="form-control" name="username" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs- col-xs-offset-">
+                                    <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+                                    <button type="submit" class="btn btn-danger" name="reset" value="reset">Confirm</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

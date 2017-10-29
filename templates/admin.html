@@ -1,0 +1,224 @@
+<!-- /*******************************************************
+ * 
+ * Copyright (C) 2015-2016 Kyriakos Naziris <kyriakos@naziris.co.uk>
+ * This is a thesis project of University of Portsmouth.
+ *
+ * This file is part of HomeSecPi.
+ * 
+ * Feel free to use and modify the source code as long as
+ * as you give credits to the original author of the
+ * project (Kyriakos Naziris - kyriakos@naziris.co.uk).
+ *
+ *******************************************************/ -->
+
+{% extends "index.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Welcome back, {{session['username']}}!</h3>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">Username: <span style="font-weight: bold;">{{session['username']}}</span><span></span> <span><a href="#" class="btn btn-sm btn-primary" id="editUsernamebtn">Edit</a></span>
+                </li>
+                <li class="list-group-item">e-Mail: <span style="font-weight: bold;">{{session['userEmail']}}</span><span></span> <span><a href="#" class="btn btn-sm btn-primary" id="editemailbtn">Edit</a></span>
+                </li>
+                <li class="list-group-item">Mobile number: <span style="font-weight: bold;">{{session['mNumber']}}</span><span></span> <span><a href="#" class="btn btn-sm btn-primary" id="editphoneNumberbtn">Edit</a></span>
+                </li>
+                <li class="list-group-item text-center"><span><a href="#" class="btn btn-sm btn-primary" id="editPasswordbtn">Change Password</a></span><span>        </span><span><a href="#" class="btn btn-sm btn-primary" id="editFourDigitPasswordbtn">Change 4-digit Password</a></span>
+                </li>
+                <li class="list-group-item">
+                    <form action="{{url_for('login')}}" class="form-signin" role="form" method="post">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit" name="logout" value="logout">Sign out</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+  <div id="editPassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editPasswordlbl" aria-hidden="true">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog modal-sm vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="editPasswordlbl">Change Password</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{url_for('admin')}}" role="form" id="editPasswordForm" method="post">
+                            <input type="hidden" name="formType" value="changePassword">
+                            <div class="form-group">
+                                <label class="col-xs- control-label">Password:</label>
+                                <div class="col-xs-">
+                                    <input type="password" class="form-control" name="password" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs- control-label">Repeat Password:</label>
+                                <div class="col-xs-">
+                                    <input type="password" class="form-control" name="confirmPassword" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs- col-xs-offset- text-center">
+                                    <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+
+                                    <button type="submit" class="btn btn-danger">Confirm</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editUsername" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editUsernamelbl" aria-hidden="true">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog modal-sm vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="editUsernamelbl">Edit Username</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{url_for('admin')}}" role="form" id="editUsernameForm" method="post">
+                            <input type="hidden" name="formType" value="editUsername">
+                            <div class="form-group">
+                                <label class="col-xs- control-label">Username:</label>
+                                <div class="col-xs-">
+                                    <input type="text" class="form-control" name="username" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs- col-xs-offset- text-center">
+                                    <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+                                    <button type="submit" class="btn btn-danger">Confirm</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editemail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editeMaillbl" aria-hidden="true">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog modal-sm vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="editeMaillbl">Edit e-Mail address</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{url_for('admin')}}" role="form" id="editemailForm" method="post">
+                            <input type="hidden" name="formType" value="editemail">
+                            <div class="form-group">
+                                <label class="col-xs- control-label">New e-Mail address:</label>
+                                <div class="col-xs-">
+                                    <input type="text" class="form-control" name="email" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs- col-xs-offset- text-center">
+                                    <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+                                    <button type="submit" class="btn btn-danger">Confirm</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editphoneNumber" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editphoneNumberlbl" aria-hidden="true">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog modal-sm vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="editphoneNumberlbl">Edit Phone Number</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{url_for('admin')}}" role="form" id="editphoneNumberForm" method="post">
+                            <input type="hidden" name="formType" value="editphoneNumber">
+                            <div class="form-group">
+                                <label class="col-xs- control-label">Country:</label>
+                                <div class="col-xs-">
+                                    <select class="form-control" name="countrySelectBox">
+                                        <option value="GB">United Kingdom</option>
+                                        <option value="US">United States</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs- control-label">Phone number:</label>
+                                <div class="col-xs-">
+                                    <input type="text" class="form-control" name="phoneNumber" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs- col-xs-offset- text-center">
+                                    <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+                                    <button type="submit" class="btn btn-danger">Confirm</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editFourDigitPassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editFourDigitPasswordlbl" aria-hidden="true">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog modal-sm vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="editFourDigitPasswordlbl">Enter your four-digit password:</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{url_for('admin')}}" role="form" id="editFourDigitPasswordForm" method="post">
+                            <input type="hidden" name="formType" value="editDigitPassword">
+                            <div class="form-group">
+                                <label class="col-xs- control-label">Current Password:</label>
+                                <div class="col-xs-">
+                                    <input name="currentPassword" class="form-control" type="tel" maxlength="4">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs- control-label">New Password:</label>
+                                <div class="col-xs-">
+                                    <input name="newPassword" class="form-control" type="tel" maxlength="4">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs- control-label">Current Password:</label>
+                                <div class="col-xs-">
+                                    <input name="repeatNewPassword" class="form-control" type="tel" maxlength="4">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs- col-xs-offset- text-center">
+                                    <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+
+                                    <button type="submit" class="btn btn-danger" tabindex="3">Confirm</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% with messages = get_flashed_messages() %} {% for message in messages %}
+        <div class="alert alert-info" role="alert">{{message}}</div>
+    {% endfor %} {% endwith %}
+{% endblock %}
