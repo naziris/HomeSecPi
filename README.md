@@ -11,6 +11,11 @@ The source code is provided as is! No support will be given regarding issues lik
 
 My thesis report it might be usuful for some of you - http://bit.ly/2xwOK3M
 
+## Contribution
+
+If you managed to make it work and you can produce a how to guide for the public, please feel free to contact me so I can update the README file with your instructions.
+
+Also, if you managed to make this project better than what I did (I’m sure you did) and you would like to share it please drop me an email too. I would love to see how you did it. With you approval we might update the source code.
 
 ## Authors
 
