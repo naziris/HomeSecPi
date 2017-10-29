@@ -6,7 +6,7 @@
 #  * This file is part of HomeSecPi.
 #  * 
 #  * Feel free to use and modify the source code as long as
-#  * as you give credits to the original author of the
+#  * as you give credit to the original author of the
 #  * project (Kyriakos Naziris - kyriakos@naziris.co.uk).
 #  *
 #  *******************************************************/
